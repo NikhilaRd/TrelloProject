@@ -1,0 +1,105 @@
+set Emp/
+"Nikhila"
+"Pete"
+************************************
+set Project/
+"Trello to GAMS API"
+************************************
+set Cards/C1*C5/
+alias(Cards, DepCards)
+Card C1
+Card C2
+Card C3
+Card C4
+Card C5
+Card C0
+************************************
+set Period/P1*P4/
+P1	-	week1
+P2	-	week2
+P3	-	week3
+P4	-	week4
+************************************
+set		WkEnding/
+"Dec 7"
+"Dec 14"
+"Dec 21"
+"Dec 28"
+************************************
+set		Per2WkEnding(Period, WkEnding)/
+"P1"."Dec 7"
+"P2"."Dec 14"
+"P3"."Dec 21"
+"P4"."Dec 28"
+************************************
+parameter PerValue(Period)/
+"P1"=1
+"P2"=2
+"P3"=3
+"P4"=4
+************************************
+set ProjAssign2Emp(Project,Cards,Emp)/
+"Trello to GAMS API"."C1"."Nikhila"
+"Trello to GAMS API"."C2"."Nikhila"
+"Trello to GAMS API"."C3"."Nikhila"
+"Trello to GAMS API"."C4"."Nikhila"
+"Trello to GAMS API"."C5"."Nikhila"
+"Trello to GAMS API"."C0"."Nikhila"
+************************************
+parameter ProjAssign2Hrs(Project,Cards)/
+"Trello to GAMS API"."C1"=0.25
+"Trello to GAMS API"."C2"=1.0
+"Trello to GAMS API"."C3"=1.0
+"Trello to GAMS API"."C4"=0.5
+"Trello to GAMS API"."C5"=0.5
+"Trello to GAMS API"."C0"=0.5
+************************************
+parameter EmpMaxHrs2Per(Emp,Period)/
+"Nikhila""P1"=40
+"Nikhila""P2"=40
+"Nikhila""P3"=40
+"Nikhila""P4"=40
+"Pete""P1"=40
+"Pete""P2"=40
+"Pete""P3"=40
+"Pete""P4"=40
+************************************
+parameter DueDate(Project,Cards)/
+"Trello to GAMS API"."C1"=0
+"Trello to GAMS API"."C2"=1
+"Trello to GAMS API"."C3"=1
+"Trello to GAMS API"."C4"=0
+"Trello to GAMS API"."C5"=1
+"Trello to GAMS API"."C0"=0
+************************************
+parameter PossDepend(Cards,DepCards)/
+"C1"."C1"=1
+"C2"."C2"=1
+"C3"."C3"=1
+"C4"."C4"=1
+"C5"."C5"=1
+"C0"."C0"=1
+************************************
+parameter ProjDepend(Project,Cards,DepCards)/
+"Trello to GAMS API"."C1"."C1"=1
+"Trello to GAMS API"."C2"."C2"=1
+"Trello to GAMS API"."C3"."C3"=1
+"Trello to GAMS API"."C4"."C4"=1
+"Trello to GAMS API"."C5"."C5"=1
+"Trello to GAMS API"."C0"."C0"=1
+************************************
+set CardName/
+"Review Trello Board to Understand Scope of Project "
+"Read Trello Cards via API "
+"Output Card Data from API Query to Include File "
+"Test using RSpec (or equivalent) "
+"Publish work in Git Repo "
+"Set Up Trello Board "
+************************************
+set ProjCard2Name(Project,Cards,CardName)/
+"Trello to GAMS API"."C1"."Review Trello Board to Understand Scope of Project "
+"Trello to GAMS API"."C2"."Read Trello Cards via API "
+"Trello to GAMS API"."C3"."Output Card Data from API Query to Include File "
+"Trello to GAMS API"."C4"."Test using RSpec (or equivalent) "
+"Trello to GAMS API"."C5"."Publish work in Git Repo "
+"Trello to GAMS API"."C0"."Set Up Trello Board "
